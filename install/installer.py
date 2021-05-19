@@ -245,7 +245,7 @@ if choice in ["s", "S"]:
     print("Permissions have been set up! Now we will set up the apache2 virtualHost...")
     #Apache2 setup
     os.system("mv resources/common/pcapanalyzer.conf /etc/apache2/sites-available/")
-    os.system("a2enmod header")
+    os.system("a2enmod headers")
     os.system("a2ensite pcapanalyzer")
     os.system("service apache2 reload")
     #Setup the service management files
