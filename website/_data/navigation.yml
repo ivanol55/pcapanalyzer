@@ -1,0 +1,8 @@
+- name: About
+  link: /about/
+  new_window: false
+  highlight: false
+- name: Documentation
+  link: https://ivanol55.github.io/pcapanalyzer-docs
+  new_window: true
+  highlight: false

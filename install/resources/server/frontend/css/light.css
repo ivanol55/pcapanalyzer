@@ -1,0 +1,122 @@
+ul {
+	list-style-type: none;
+	margin: 0;
+	margin-left:-8px;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: #111111;
+}
+
+.active {
+	background-color: #e62e00;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	padding: 1em;
+}
+
+.grid-item {
+	padding-top: 0.2em;
+	text-align: center;
+}
+
+table {
+	border-collapse: collapse;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.warning {
+	margin-top: 5em;
+	margin-left: auto;
+	margin-right: auto;
+	color:red;
+	text-align:center;
+}
+
+th {
+	color: white;
+	font-size: 1.2em;
+	background-color: #e62e00;
+	padding: 15px;
+	border: 1px solid #ddd;
+	text-align: center;
+	height:auto;
+}
+
+.th-home {
+	font-size:1.7em;
+} 
+
+td {
+	padding:0.5em;
+	border: 1.5px solid #000000;
+	text-align: center;
+}
+
+.packet-a {
+	font-size: 1em; 
+	color: #e62e00;
+	font-weight: bold;
+}
+
+.packet-td {
+	padding:1em;
+}
+
+* {
+	font-family: arial, serif;
+}
+
+h1 {
+	text-align:center;
+}
+
+form {
+	margin-left:auto; 
+	margin-right:auto; 
+	text-align:center;
+}
+
+.th-dataglance {
+	font-size:1em;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+.td-dataglance {
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+a {
+	color: #e62e00;
+	font-weight: bold;
+}
+
+textarea {
+	width:80%;
+	height:50%;
+	font-size:2.5em;
+}

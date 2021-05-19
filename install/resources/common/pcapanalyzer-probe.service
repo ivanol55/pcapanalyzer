@@ -1,0 +1,15 @@
+[Unit]
+Description=IDS probe control for the PCAPAnalyzer backend service
+After=network.target
+After=postgresql.service
+
+[Service]
+ExecStart=/usr/bin/python3 start.py
+WorkingDirectory=REPLACEONINSTALL
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

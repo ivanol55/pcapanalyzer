@@ -1,0 +1,19 @@
+- links:
+  - name: About
+    link: /about/
+  - name: Documentation
+    link: https://ivanol55.github.io/pcapanalyzer-docs 
+    new_window: true
+- links:
+  - name: Ivan's Github
+    link: https://github.com/ivanol55
+    new_window: true
+    social_icon: Github
+  - name: Luis's Github
+    link: https://github.com/lportillo01
+    new_window: true
+    social_icon: Github
+  - name: Sergi's Github
+    link: https://github.com/hondas04
+    new_window: true
+    social_icon: Github

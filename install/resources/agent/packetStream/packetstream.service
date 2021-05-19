@@ -1,0 +1,15 @@
+[Unit]
+Description=Backend control for PCAPAnalyzer packetStream
+After=network.target 
+After=mysql.service
+
+[Service]
+ExecStart=/usr/bin/python3 start.py
+WorkingDirectory=/var/www/pcapanalyzer/backend/packetStream
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
