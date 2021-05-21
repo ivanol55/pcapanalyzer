@@ -230,7 +230,7 @@ if choice in ["s", "S"]:
     os.system(command)
     command = "chown root:www-data -R " + basedir + "backend/analysisGenerator/*"
     os.system(command)
-    command = "chmod 750 -R " + basedir + "backend/analysisGenerator/script"
+    command = "chmod 750 -R " + basedir + "backend/analysisGenerator/scripts"
     os.system(command)
     command = "chmod 755 " + basedir + "backend/analysisGenerator/files"
     os.system(command)

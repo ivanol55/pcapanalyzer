@@ -33,9 +33,13 @@
 			chmod($target_file, 0777);
 			}
 		//runs the backend script for analysis database generation
-		$commandstring = "python3 " . $basepath . "/../backend/analysisGenerator/script/dbGenerator.py " . $_POST['dbName']; 
+		$commandstring = "python3 " . $basepath . "/../backend/analysisGenerator/scripts/dbGenerator.py " . $_POST['dbName']; 
 		$command = escapeshellcmd($commandstring);
 		$output = shell_exec($command);
+		$commandstring = "python3 " . $basepath . "/../backend/analysisGenerator/scripts/fileCleanup.py " . $_POST['dbName']; 
+		$command = escapeshellcmd($commandstring);
+		$output = shell_exec($command);
+
 		?>
 		<h1>Files uploaded and database created! returning to start page...</h1>
 	</body>
