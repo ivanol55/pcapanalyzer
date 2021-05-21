@@ -76,10 +76,17 @@ database = psycopg2.connect(host=dbHost, user=dbUser, password=dbPassword, dbnam
 cursor = database.cursor()
 database.autocommit = True
 query = "CREATE TABLE main (id SERIAL PRIMARY KEY, packettimestamp TIMESTAMP NOT NULL, machineid TEXT NOT NULL, sourcemac VARCHAR(100) NOT NULL, destinationmac VARCHAR(100) NOT NULL, sourceip VARCHAR(100) NULL DEFAULT NULL, destinationip VARCHAR(100) NULL DEFAULT NULL, protocol VARCHAR(100) NULL DEFAULT NULL, sourceport INT NULL DEFAULT NULL, destinationport INT NULL DEFAULT NULL, info TEXT NULL DEFAULT NULL);"
-
-#Copy data from the csv into the database
 cursor.execute(query)
-query = "COPY main(packettimestamp, machineid, sourcemac, destinationmac, sourceip, destinationip, protocol, sourceport, destinationport, info) FROM '" + csvdir + "output.csv' WITH (FORMAT CSV, ENCODING 'UTF-8', DELIMITER ',', HEADER false, QUOTE '\"')" 
+database.autocommit = False
+
+#Open the csv file for readin
+csv = csvdir + "output.csv"
+contents = open(csv, "r")
+
+#Insert the data from the CSV to the database
+query = "COPY main(packettimestamp, machineid, sourcemac, destinationmac, sourceip, destinationip, protocol, sourceport, destinationport, info) FROM STDIN WITH (FORMAT CSV, ENCODING 'UTF-8', DELIMITER ',', HEADER false, QUOTE '\"') \n"
+cursor.copy_expert(query, contents)
+database.commit()
 
 #Grant SELECT permissions to the user on queryRunner
 cursor.execute(query)
@@ -92,6 +99,7 @@ cursor.execute(query)
 query = "GRANT USAGE ON SEQUENCE main_id_seq TO selectuser"
 cursor.execute(query)
 cursor.close()
+database.commit()
 database.close()
 
 #Cleanup
