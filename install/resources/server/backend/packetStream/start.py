@@ -28,19 +28,19 @@ while True:
 	command = ["python3", basedir + "packetStream/pcaps/scripts/movepcaps.py"]
 	subprocess.Popen(command)
 	#Sleep for 30 seconds
-	time.sleep(3)
+	time.sleep(30)
 	# Change directory to the csv scripts directory and run the csv generator script
 	os.chdir("../../csvs/scripts/")
 	command = "python3 " + basedir + "packetStream/csvs/scripts/generatecsv.py"	
 	os.system(command)
 	#Sleep for 30 seconds
-	time.sleep(3)
+	time.sleep(30)
 	# Change directory to the pgsql scripts directory and run the database insert script
 	os.chdir("../../pgsql/scripts/")
 	command = "python3 " + basedir + "packetStream/pgsql/scripts/csvtodb.py"
 	os.system(command)
 	#sleep for 30 seconds
-	time.sleep(3)
+	time.sleep(30)
 	#Return to the original folder
 	os.chdir("../../")
 
