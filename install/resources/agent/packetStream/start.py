@@ -1,4 +1,4 @@
-#Import the necessary system libraries for the agent
+#Import all of the necessary libraries
 import subprocess
 import time
 import os
@@ -8,41 +8,39 @@ import configparser
 config = configparser.ConfigParser()
 config.read("../.my.cnf")
 
-#Set all of the necessary variables from the server configuration file
+#Setup all of the necessary variables from the configuration file
 basedir = str(config["paths"]["basedir"])
 
-# move the orphaned pcap files from the last system run
+#Cleanup from the last packetstream run
 command = "mv " + basedir + "packetStream/pcaps/outputs/*.pcap " + basedir + "packetStream/csvs/inputs/"
 moveresidue = os.system(command)
 
-#Move to the pcaps scripts folder and start capturing data on this agent host
+#Change to the pcap script folder and start generating pcaps
 os.chdir("pcaps/scripts/")
 command = ["python3", basedir + "packetStream/pcaps/scripts/generatepcaps.py"]
 tshark = subprocess.Popen(command)
 
-#Move to the main directory
+#Return to the main directory
 os.chdir("../../")
-while True:	
-	#Move to the pcaps scripts folder
+while True:
+	#Change directory to the pcap scripts directory and run the pcap mover script
 	os.chdir("pcaps/scripts/")
-	#run the pcap moving script
 	command = ["python3", basedir + "packetStream/pcaps/scripts/movepcaps.py"]
-	moveracsv = subprocess.Popen(command)
+	subprocess.Popen(command)
 	#Sleep for 30 seconds
-	time.sleep(30)
-	#Move to the csvs scripts folder
+	time.sleep(3)
+	# Change directory to the csv scripts directory and run the csv generator script
 	os.chdir("../../csvs/scripts/")
-	#run the pcap to csv processing script
-	command = ["python3", basedir + "packetStream/csvs/scripts/generatecsv.py"]	
-	procesarcsv = subprocess.Popen(command)
+	command = "python3 " + basedir + "packetStream/csvs/scripts/generatecsv.py"	
+	os.system(command)
 	#Sleep for 30 seconds
-	time.sleep(30)
-	#Move to the pgsql scripts folder
+	time.sleep(3)
+	# Change directory to the pgsql scripts directory and run the database insert script
 	os.chdir("../../pgsql/scripts/")
-	#run the database data copying script
-	command = ["python3", basedir + "packetStream/pgsql/scripts/csvtodb.py"]
-	subirabbdd = subprocess.Popen(command)
-	#Sleep for 30 seconds
-	time.sleep(30)
-	#Return to the original directory
+	command = "python3 " + basedir + "packetStream/pgsql/scripts/csvtodb.py"
+	os.system(command)
+	#sleep for 30 seconds
+	time.sleep(3)
+	#Return to the original folder
 	os.chdir("../../")
+
